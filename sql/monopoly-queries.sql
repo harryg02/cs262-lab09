@@ -36,3 +36,19 @@ LIMIT 1;
 -- Yes, For example Finding Pairs of Players with the Same Cash Amount. This would 
 -- require comparing each player's cash amount with every other player's cash amount.
 
+-- Query to Retrieve Player's Properties and Cash Status
+SELECT 
+    Player.name, 
+    Player.cash, 
+    Property.name AS property_name, 
+    Property.color, 
+    Property.houses, 
+    Property.hotel
+FROM 
+    Player
+JOIN 
+    Property ON Player.ID = Property.ownerID
+JOIN 
+    PlayerGame ON Player.ID = PlayerGame.playerID
+ORDER BY 
+    Player.name;

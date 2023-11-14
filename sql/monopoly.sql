@@ -61,8 +61,8 @@ INSERT INTO Game VALUES (2, '2006-06-28 13:20:00');
 INSERT INTO Game VALUES (3, '2006-06-29 18:41:00');
 
 INSERT INTO Player(ID, emailAddress) VALUES (1, 'me@calvin.edu');
-INSERT INTO Player VALUES (2, 'king@gmail.edu', 'The King');
-INSERT INTO Player VALUES (3, 'dog@gmail.edu', 'Dogbreath');
+INSERT INTO Player(ID, emailAddress, name) VALUES (2, 'king@gmail.edu', 'The King');
+INSERT INTO Player(ID, emailAddress, name) VALUES (3, 'dog@gmail.edu', 'Dogbreath');
 
 INSERT INTO PlayerGame VALUES (1, 1, 0.00);
 INSERT INTO PlayerGame VALUES (1, 2, 0.00);

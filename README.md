@@ -10,6 +10,7 @@ It has the following read data route URLs:
 - `/` a hello message
 - `/players` a list of players
 - `/players/:id` a single player with the given ID
+- `/player-properties` a joint table with players and properties
 
 It is based on the standard Azure App Service tutorial for Node.js.
 

@@ -65,7 +65,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 function readPlayerProperties(req, res, next) {
   const sql = `
     SELECT 
-      Player.name, 
+      Player.emailaddress, 
       Player.cash, 
       Property.name AS property_name, 
       Property.color, 

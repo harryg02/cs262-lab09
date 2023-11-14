@@ -52,11 +52,44 @@ router.get('/players/:id', readPlayer);
 router.put('/players/:id', updatePlayer);
 router.post('/players', createPlayer);
 router.delete('/players/:id', deletePlayer);
+//join tables
+router.get('/player-properties', readPlayerProperties);
 
 app.use(router);
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 // Implement the CRUD operations.
+
+
+//join tables
+function readPlayerProperties(req, res, next) {
+  const sql = `
+    SELECT 
+      Player.name, 
+      Player.cash, 
+      Property.name AS property_name, 
+      Property.color, 
+      Property.houses, 
+      Property.hotel
+    FROM 
+      Player
+    JOIN 
+      Property ON Player.ID = Property.ownerID
+    JOIN 
+      PlayerGame ON Player.ID = PlayerGame.playerID
+    ORDER BY 
+      Player.name;
+  `;
+
+  db.manyOrNone(sql)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.error("Error in readPlayerProperties: ", err);
+      next(err);
+    });
+}
 
 function returnDataOr404(res, data) {
   if (data == null) {

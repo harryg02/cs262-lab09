@@ -64,21 +64,24 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 //join tables
 function readPlayerProperties(req, res, next) {
   const sql = `
-    SELECT DISTINCT
-      Player.emailaddress, 
-      Player.cash, 
-      Property.name AS property_name, 
-      Property.color, 
-      Property.houses, 
-      Property.hotel
-    FROM 
-      Player
-    JOIN 
-      Property ON Player.ID = Property.ownerID
-    JOIN 
-      PlayerGame ON Player.ID = PlayerGame.playerID
-    ORDER BY 
-      Player.emailaddress;
+  SELECT DISTINCT
+    Player.ID AS player_id,  -- Added this line to select the player ID
+    Player.emailaddress, 
+    Player.cash, 
+    Property.ID AS property_id, 
+    Property.name AS property_name, 
+    Property.color, 
+    Property.houses, 
+    Property.hotel
+  FROM 
+    Player
+  JOIN 
+    Property ON Player.ID = Property.ownerID
+  JOIN 
+    PlayerGame ON Player.ID = PlayerGame.playerID
+  ORDER BY 
+    Player.emailaddress;
+
     `;
 
   db.manyOrNone(sql)

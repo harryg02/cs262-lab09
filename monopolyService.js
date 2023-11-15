@@ -64,7 +64,7 @@ app.listen(port, () => console.log(`Listening on port ${port}`));
 //join tables
 function readPlayerProperties(req, res, next) {
   const sql = `
-    SELECT 
+    SELECT DISTINCT
       Player.emailaddress, 
       Player.cash, 
       Property.name AS property_name, 
@@ -78,8 +78,8 @@ function readPlayerProperties(req, res, next) {
     JOIN 
       PlayerGame ON Player.ID = PlayerGame.playerID
     ORDER BY 
-      Player.name;
-  `;
+      Player.emailaddress;
+    `;
 
   db.manyOrNone(sql)
     .then((data) => {
